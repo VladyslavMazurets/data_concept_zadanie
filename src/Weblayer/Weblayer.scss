@@ -1,0 +1,53 @@
+$bgImg: '../assets/photo/bg-photo2.png';
+
+.weblayer {
+    position: absolute;
+    bottom: 4%;
+    right: 2%;
+
+    width: 400px;
+    height: 600px;
+    border: 0.5px solid white;
+
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+
+    background-image: url($bgImg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    .weblayer__container{  
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        height: 65%;
+        width: 70%;
+
+        .weblayer__header {
+            font-size: 40px;
+            font-weight: 700;
+            line-height: 40px;
+
+            color: white;
+        }
+
+        .weblayer__subheader{
+            font-size: 18px;
+            margin-block: 25px;
+
+            color: white;
+        }
+
+        .weblayer__form{
+            display: flex;
+            flex-direction: column;
+
+            input {
+                font-size: 22px;
+            }
+        }
+    }
+}
