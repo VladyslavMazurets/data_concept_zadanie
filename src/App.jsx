@@ -15,7 +15,7 @@ function App() {
             Click on me
           </button>
 
-          {btnClick && <Weblayer />}
+          {btnClick && <Weblayer setBtnClick={setBtnClick}/>}
      </div>
     </>
   );

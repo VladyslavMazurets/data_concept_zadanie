@@ -1,9 +1,18 @@
 $bgImg: '../assets/photo/bg-photo2.png';
 
+@keyframes move {
+    from {right: -100px;}
+    to {right: 30px;}
+    
+}
+
 .weblayer {
+    animation: move 1s;
+    animation-timing-function: linear;
+
     position: absolute;
     bottom: 4%;
-    right: 2%;
+    right: 30px;
 
     width: 400px;
     height: 600px;
@@ -20,6 +29,7 @@ $bgImg: '../assets/photo/bg-photo2.png';
     background-size: contain;
 
     .weblayer__container{  
+
         display: flex;
         flex-direction: column;
         text-align: center;
@@ -46,7 +56,47 @@ $bgImg: '../assets/photo/bg-photo2.png';
             flex-direction: column;
 
             input {
-                font-size: 22px;
+                font-size: 18px;
+
+                padding: 15px 20px;
+                margin-bottom: 5px;
+
+                border-radius: 7px;
+                color: black;
+            }
+
+            button {
+                margin-top: 5px;
+                padding-block: 12px ;
+
+                font-size: 20px;
+                font-weight: 900;
+                font-family: "Raleway", sans-serif;
+
+                color: white;
+                background-color: rgb(255, 166, 0);
+
+                &:hover {
+                    transition: 0.5s;
+                    cursor: pointer;
+                    color: rgb(0, 0, 0);
+                    ;
+                }
+            }
+        }
+        .message__container {
+            margin-top: 45px;
+            padding-block: 15px;
+
+            .message {
+                font-size: 48px;
+                font-weight: 700;
+                font-family: 'Releway', sans-serif;
+
+                color: white;
+                background: linear-gradient(to right, rgb(255, 166, 0) 0%, #7300ff 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
             }
         }
     }
