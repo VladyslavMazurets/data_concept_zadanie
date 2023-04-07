@@ -1,40 +1,147 @@
+@import './WeblayerBreackPoints.scss';
+
 $bgImg: '../assets/photo/bg-photo2.png';
 
-@keyframes move {
-    from {right: -100px;}
-    to {right: 30px;}
+@keyframes activeMove {
+    0%{transform:translateX(500px); opacity:0;};
+    100%{transform:translateX(0); opacity:1;};    
+}
+
+@keyframes passiveMove {
+    0%{transform:translateX(0); opacity:1;};
+    100%{transform:translateX(500px); opacity:0;};
+}
+
+@include md {
+    @keyframes activeMove {
+        0%{transform:translate(50%, 50%); opacity:0;};
+        100%{transform:translateX(50%, 50%); opacity:1;};    
+    }
+
+    @keyframes passiveMove {
+        0%{transform:translateX(50%, 50%); opacity:1;};
+        100%{transform:translate(50%, 50%); opacity:0;};
+    }
+}
+
+@include lg {
+    @keyframes activeMove {
+        0%{transform:translateX(500px); opacity:0;};
+        100%{transform:translateX(0); opacity:1;};    
+    }
     
+    @keyframes passiveMove {
+        0%{transform:translateX(0); opacity:1;};
+        100%{transform:translateX(500px); opacity:0;};
+    }
 }
 
 .weblayer {
-    animation: move 1s;
-    animation-timing-function: linear;
+    transition: top 0.4s;
 
-    position: absolute;
-    bottom: 4%;
-    right: 30px;
+    position: fixed;
+    z-index: 100;
+    bottom: 0%;
+    right: 0%;
 
-    width: 400px;
-    height: 600px;
-    border: 0.5px solid white;
-
+    width: 100%;
+    height: 100%;
+   
     display: flex; 
     flex-direction: column;
     align-items: center;
     justify-content: end;
-
+    
     background-image: url($bgImg);
     background-position: center;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
+
+    @include md {
+      width: 450px;
+      height: 1300px;
+      background-size: contain;
+
+      top:50%;
+      left: 50%;
+      transform:translate(-50%, -50%)
+    }
+
+    @include lg {
+        top: 25%;
+        left: 61%;
+        transform: none;
+
+        width: 400px;
+        height: 600px;
+    }
+
+    @include xl {
+        top: 34%;
+        left: 79%;
+    }
+    
+    &.active {
+        animation: activeMove 1s cubic-bezier(.175,.885,.32,1.275);
+    }
+
+    &.passive {
+        animation: passiveMove 3s cubic-bezier(.175,.885,.32,1.275);
+    }
+
+
+    .weblayer__closebtn{
+        &::before {
+        content: "\00d7";
+
+        position: absolute;
+        top: -1%;
+        right: 2%;
+
+        font-size: 40px;
+        cursor: pointer;
+        color: rgb(255, 166, 0);
+
+        @include md {
+            right: 4%;
+            top: 22%;
+        }
+
+        @include lg {
+            top: -1%;
+            right: 6%;
+        }
+
+        @include xl {
+            right: 7%;
+        }
+    }
+
+    &:hover:before {
+        transition: 0.5s linear;
+        color: white;
+    }
+    }
 
     .weblayer__container{  
-
         display: flex;
         flex-direction: column;
+        justify-content: center;
         text-align: center;
-        height: 65%;
-        width: 70%;
+
+        width: 85%;
+        height: 75%;
+
+        @include md {
+            width: 75%;
+            height: 85%;
+        }
+
+        @include lg {
+            width: 75%;
+            height: 100%;
+            justify-content: end;
+        }
 
         .weblayer__header {
             font-size: 40px;
@@ -42,51 +149,111 @@ $bgImg: '../assets/photo/bg-photo2.png';
             line-height: 40px;
 
             color: white;
+
+            @include md {
+                font-size: 50px;
+                line-height: 50px;
+            }
+
         }
 
         .weblayer__subheader{
             font-size: 18px;
-            margin-block: 25px;
+            margin-block: 10px;
 
             color: white;
+
+            @include md {
+                font-size: 22px;
+                margin-block: 20px;
+            }
+
+            @include lg {
+                font-size: 18px;
+                margin-block: 10px;
+            }
+
+            @include xl {
+                margin-block: 15px;
+            }
         }
 
         .weblayer__form{
             display: flex;
             flex-direction: column;
 
+            margin-top: 20px;
+            
+            @include md {
+                margin-top: 15px;
+            }
+
+            @include lg {
+                margin-top: 10px;
+            }
+
             input {
                 font-size: 18px;
 
-                padding: 15px 20px;
-                margin-bottom: 5px;
+                padding: 10px 20px;
+                margin-bottom: 8px;
 
                 border-radius: 7px;
                 color: black;
+
+                &:focus {
+                    outline: none;
+                    border: 2px solid rgb(255, 166, 0);
+                }
+
+                @include md {
+                    padding: 15px 20px;
+                }
+
+                @include lg {
+                    padding: 12px 25px;
+                }
             }
 
             button {
-                margin-top: 5px;
-                padding-block: 12px ;
+                margin-top: 10px;
+                padding-block: 12px;
 
                 font-size: 20px;
                 font-weight: 900;
                 font-family: "Raleway", sans-serif;
 
                 color: white;
+                border-radius: 5px;
                 background-color: rgb(255, 166, 0);
 
                 &:hover {
                     transition: 0.5s;
                     cursor: pointer;
-                    color: rgb(0, 0, 0);
-                    ;
+                    color: black;
+                }
+
+                @include lg {
+                    margin-bottom: 30px;
                 }
             }
         }
         .message__container {
-            margin-top: 45px;
-            padding-block: 15px;
+            height: 100px;
+            padding-top: 60px;
+
+            @include md {
+                padding-top: 100px;
+            }
+
+            @include lg { 
+                padding-top: 110px;
+            }
+
+            @include xl {
+                height: 160px;
+                padding-top: 50px;
+            }
 
             .message {
                 font-size: 48px;
